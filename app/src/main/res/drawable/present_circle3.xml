@@ -1,0 +1,9 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <stroke
+        android:width="10dp"
+        android:color="@color/Bottom_App"/>
+
+    <solid
+        android:color="@color/Button_3_present"/>
+</shape>

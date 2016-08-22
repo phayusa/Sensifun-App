@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ViewStub
+        android:id="@+id/layout_stub"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="90dp"/>
+
+    <LinearLayout
+        android:layout_above="@+id/layout_stub"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Long"
+            android:textColor="@android:color/black"
+            android:id="@+id/Play_button"
+            android:onClick="on_click_sound"
+            android:layout_weight="0.2"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Short"
+            android:onClick="on_click_sound"
+            android:textColor="@android:color/black"
+            android:id="@+id/Pressed_Play_Button"
+            android:layout_weight="0.2" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="II"
+            android:textColor="@android:color/black"
+            android:id="@+id/Pause_Button"
+            android:layout_weight="0.2"
+            android:onClick="on_click_sound"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="[]"
+            android:textColor="@android:color/black"
+            android:id="@+id/Stop_Button"
+            android:layout_weight="0.2"
+            android:onClick="on_click_sound"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/black"
+            android:text="Select"
+            android:id="@+id/Choose_Song"
+            android:layout_weight="0.2"
+            android:onClick="on_click_sound"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Start Record"
+            android:id="@+id/Rec_Button"
+            android:textColor="@android:color/black"
+            android:layout_weight="0.2"
+            android:onClick="on_click_sound"/>
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Sensifun</string>
+    <string name="ask_connection">Connect to the carpet</string>
+    <string name="no_connection">No connection</string>
+    <string name="no_internet">No internet connection\nPlease enalble it</string>
+    <string name="MEMORY_TYPE">sialapscss</string>
+    <string name="HIGH_SCORE_SIMON">SiAPOWCSA</string>
+    <string name="HIGH_SCORE_MEMORY">SiAPOWwwwAAACSA</string>
+    <string name="SCORE_SIMON">scoratypeo</string>
+    <string name="SCORE_MEMORY">scoratypa</string>
+    <string name="SCORE_KEY">KEYSCOREDa</string>
+    <string name="RECORD_KEY">KEYRECORDDa</string>
+    <string name="Play_Again">continuedfortiti</string>
+    <string name="KEY_TIME">TI%MEZZZ</string>
+    <string name="GAME_KEY">bestcarPETTTTever</string>
+    <string name="sucess_connection">Connection sucessful</string>
+    <string name="finsh_co">Connection closed</string>
+    <string name="finsh_game">Game closed</string>
+    <string name="Select_Song">Select now a case to attribute a song</string>
+    <string name="Key_x">VALUABLE8X</string>
+    <string name="Key_Y">VALUABLE8Y</string>
+    <string name="Key_Time_Set">TIME_valuable_BIS</string>
+    <string name="Confirm_Exit">Voulez-vous vraiment quitter Sensifun ?</string>
+    <string name="Quit">Quitter</string>
+    <string name="Not_Quit">Rester</string>
+    <string name="CONNECT_REQUIRE">CONNECT TO THE CARPET</string>
+    <string name="GAME_OVER">GAME OVER !</string>
+    <string name="No_Value">No value set for the carpet\nSet it in the Settings</string>
+</resources>

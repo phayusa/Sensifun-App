@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#E50000</color>
+    <color name="colorPrimaryDark">#b20000</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="inactive_color">#000000</color>
+    <color name="press_color">#FF0000</color>
+    <color name="Pause_color">#4c0000</color>
+    <color name="Present_Carpet">#0000FF</color>
+    <color name="Simon_Button_1_active">#2bc6ca</color>
+    <color name="Simon_Button_2_active">#ad62ce</color>
+    <color name="Simon_Button_3_active">#ed5a4f</color>
+    <color name="Simon_Button_4_active">#e7ad37</color>
+    <color name="Simon_Button_5_active">#2fb574</color>
+    <color name="Button_1_present">#402bc6ca</color>
+    <color name="Button_2_present">#40ad62ce</color>
+    <color name="Button_3_present">#40ed5a4f</color>
+    <color name="Button_4_present">#40e7ad37</color>
+    <color name="Button_5_present">#402fb574</color>
+    <color name="Bottom_App">#17242b</color>
+    <color name="Top_App">#131e24</color>
+    <color name="Simon_Center_Circle">#27353d</color>
+    <color name="Simon_Line">#3d4a4f</color>
+</resources>

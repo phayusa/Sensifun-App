@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/Connect_Button"
+        android:icon="@drawable/wifi_off"
+        android:title="Connect"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/Replay_Mode"
+        android:icon="@android:drawable/title_bar"
+        android:title="Replay"
+
+        app:showAsAction="never" />
+
+</menu>

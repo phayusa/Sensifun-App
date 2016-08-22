@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@color/Bottom_App">
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:max="100"
+        android:progress="1"
+        android:visibility="visible"
+        android:layout_height="20dp"
+        android:id="@+id/timer_progress" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:gravity="center"
+        android:layout_margin="30dp"
+        android:background="@android:color/transparent">
+            <ImageButton
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/circle1"
+                android:id="@+id/imageButton00"
+                android:background="@android:color/transparent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="false" />
+
+
+        <ImageButton
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/circle2"
+            android:id="@+id/imageButton01"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right|top" />
+
+        <ImageButton
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/circle3"
+            android:id="@+id/imageButton10"
+            android:background="@android:color/transparent"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center" />
+
+
+        <ImageButton
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:src="@drawable/circle4"
+                android:id="@+id/imageButton20"
+                android:background="@android:color/transparent"
+                android:layout_alignLeft="@+id/imageButton00"
+                android:layout_alignStart="@+id/imageButton00"
+                android:layout_alignParentBottom="true"
+            android:layout_gravity="left|bottom" />
+
+        <ImageButton
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/circle5"
+            android:id="@+id/imageButton21"
+            android:background="@android:color/transparent"
+            android:layout_alignTop="@+id/imageButton10"
+            android:layout_alignParentBottom="true"
+            android:layout_alignLeft="@+id/imageButton01"
+            android:layout_toRightOf="@+id/imageView5"
+            android:layout_gravity="right|bottom" />
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

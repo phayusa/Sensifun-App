@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@color/Top_App"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="@string/CONNECT_REQUIRE"
+        android:id="@+id/writer_simon"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:height="@dimen/size_button"
+        android:layout_marginTop="39dp"
+        android:fontFamily="a"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <ViewStub
+        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:foregroundGravity="center"
+        android:id="@+id/stub_simon"
+        layout="@layout/simon_grid"
+        />
+</LinearLayout>

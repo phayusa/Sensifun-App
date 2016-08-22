@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="sizex_carpet">5</integer>
+    <integer name="sizey_carpet">3</integer>
+    <integer name="Request_Score_Reaction">34</integer>
+
+</resources>
