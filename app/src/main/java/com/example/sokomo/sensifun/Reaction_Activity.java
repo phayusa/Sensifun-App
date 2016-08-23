@@ -57,6 +57,7 @@ public class Reaction_Activity extends AppCompatActivity {
                 if (frame[0].equals("1") ) {
                     game_instance.Change_Button_State(getApplicationContext(),Integer.parseInt(frame[2]), Integer.parseInt(frame[1]), true);
                 }
+                writer.setText("Time Left: "+game_instance.left_time());
             } catch (Exception e) {
                 System.err.println("Erreur sur " + frame[1] + " " + frame[2]);
                 e.printStackTrace();

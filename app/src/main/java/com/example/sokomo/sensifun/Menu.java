@@ -32,7 +32,6 @@ public class Menu extends AppCompatActivity {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);*/
         //getSupportActionBar().setTitle(s);
         ((Button) findViewById(R.id.New_game_button)).setTypeface(font);
-        ((Button) findViewById(R.id.Song_launch)).setTypeface(font);
         ((Button) findViewById(R.id.Simon_Button)).setTypeface(font);
         ((Button) findViewById(R.id.Settings_button)).setTypeface(font);
         ((Button) findViewById(R.id.Exit_button)).setTypeface(font);
@@ -47,10 +46,10 @@ public class Menu extends AppCompatActivity {
                 lauched_activity = new Intent(this,Reaction_Activity.class);
                 this.startActivity(lauched_activity);
                 break;
-            case R.id.Song_launch:
+            /*case R.id.Song_launch:
                 lauched_activity = new Intent(this,Carpet_Song.class);
                 this.startActivity(lauched_activity);
-                break;
+                break;*/
             case R.id.Simon_Button:
                 lauched_activity = new Intent(this,Simon_Activity.class);
                 this.startActivity(lauched_activity);

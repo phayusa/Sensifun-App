@@ -2,8 +2,13 @@
 
 
     <style name="Theme.AppLib" parent="Theme.AppCompat.Light">
-        <item name="android:typeface">serif</item>
+        <item name="android:typeface">sans</item>
         <item name="actionBarStyle">@style/Theme.AppLib.ActionBar.Solid</item>
+    </style>
+
+    <style name="CodeFont" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:typeface">monospace</item>
     </style>
 
 

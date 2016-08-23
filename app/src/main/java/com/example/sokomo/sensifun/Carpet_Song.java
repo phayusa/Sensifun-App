@@ -1,12 +1,16 @@
 package com.example.sokomo.sensifun;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.*;
 import android.view.Menu;
@@ -61,6 +65,10 @@ public class Carpet_Song extends AppCompatActivity {
             pressed = _pressed;
             mode = _mode;
             time_launched = time;
+        }
+
+        public boolean Compare(Complete_Sound other){
+            return  (pressed&&other.pressed) && (mode == other.mode) && (time_launched == other.time_launched);
         }
 
         @Override
@@ -278,106 +286,13 @@ public class Carpet_Song extends AppCompatActivity {
         //Activate the action bar and the return button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.song_menu, menu);
+        inflater.inflate(R.menu.connect_menu, menu);
         menu_bar = menu;
         return true;
     }
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                if(launched)
-                    Connection.cancel(true);
-                this.finish();
-                return true;
-            case R.id.Connect_Button:
-                if(!launched) {
-                    Connection = new Carpet_Receiver();
-                    Connection.execute();
-                }
-                else
-                    Toast.makeText(getApplicationContext(),"Connection Déja lancé",Toast.LENGTH_SHORT);
-                System.err.println("Connect");
-                return true;
-            case R.id.Replay_Mode:
-                String line = "",path_id = "";
-                String[] reading_buffered_split;
-                int read_x = 0,read_y = 0;
-                String path = Environment.getExternalStorageDirectory()+"/Sensifun/";
-                File folder = new File(path);
-                if(!folder.exists()){
-                    folder.mkdir();
-                }
-                try {
 
-                    //create the buffered reader of the file
-                    BufferedReader file_buffer_reader= new BufferedReader(new FileReader(path+"aaaa.txt"));
-                    line = file_buffer_reader.readLine();
-                    //load the size
-                    read_x = Integer.parseInt(line.split(" ")[0]);
-                    read_y = Integer.parseInt(line.split(" ")[1]);
-                    create_sound_by_size(read_x,read_y);
-                    int size_of_init = read_x * read_y;
-                    //load the settings of the carpet
-                    for (int current_line=0;current_line<size_of_init;current_line++){
-                        line = file_buffer_reader.readLine();
-                        reading_buffered_split = line.split(" ");
-                        read_x = Integer.parseInt(reading_buffered_split[0]);
-                        read_y = Integer.parseInt(reading_buffered_split[1]);
-                        if(line.contains("id")){
-                            path_id = line.split("id:")[1];
-                            System.err.println("id "+path_id);
-//                            sound_tab[read_x][read_y] = new Sound_Information(getApplicationContext(),Integer.parseInt(path_id));
-                            sound_tab[read_x][read_y] = new Sound_Information(getApplicationContext(),getResources().getIdentifier("effect"+Integer.toString(read_x*3 + (read_y+1)),"raw",getPackageName()));
-
-                        }else{
-                            path_id = line.split("path:")[1];
-                            sound_tab[read_x][read_y] = new Sound_Information(getApplicationContext(),path_id);
-                        }
-                        sound_tab[read_x][read_y].On_Completion(new Complete_Sound(read_x,read_y));
-                    }
-                    //TODO : Correct the problem read files, the reading list don't d the same thing than the other list
-                    //Save2 = new ArrayList<Complete_Sound>();
-                    while ((line = file_buffer_reader.readLine())!= null){
-                        reading_buffered_split = line.split(" ");
-                        System.err.println(line);
-                        for (String Split_read : reading_buffered_split){
-                            System.err.println(Split_read);
-                        }
-                        Save2.add(new Complete_Sound(Integer.parseInt(reading_buffered_split[0]),Integer.parseInt(reading_buffered_split[1]),Boolean.parseBoolean(reading_buffered_split[3]),reading_buffered_split[2],Long.parseLong(reading_buffered_split[4])));
-                    }
-                    file_buffer_reader.close();
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                    Toast.makeText(getApplicationContext(),"Erreur survenue lors de la récupération des données",Toast.LENGTH_LONG).show();
-                    System.err.println(path_id+" "+Integer.toString(read_x)+" "+Integer.toString(read_y));
-                    return true;
-                }
-                System.err.println("Je vais lancer le replay");
-                for (Complete_Sound tmp: Save){
-                    System.err.println(" x: "+tmp.x +" y: "+ tmp.y + " pressed: "+ tmp.pressed + " time: " + tmp.time_launched +" mode: "+ tmp.mode);
-                }
-                //Save = new ArrayList<Complete_Sound>(Save2);
-                System.err.println("Save 2");
-                for (Complete_Sound tmp2: Save2){
-                    System.err.println("x: "+tmp2.x +" y: "+ tmp2.y + " pressed: "+ tmp2.pressed + " time: " + tmp2.time_launched +" mode: "+ tmp2.mode);
-
-                }
-                //Save: list from previous launched
-                //Save2 : list from file reading
-                replay =  new relaunched_replay(Save);
-                replay.execute();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
-    //TODO use carpet manager class to manage the pressed and unpressed dale
     //Function which launch or pause a sound effect
     public void activate_sound(int x,int y){
         System.err.println("x: "+x+" y: "+y+" mode: "+mode+" pressed:"+pressed_play);
@@ -529,6 +444,7 @@ public class Carpet_Song extends AppCompatActivity {
                     System.err.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                     for (Complete_Sound tmp : Save){
                         System.err.println("x : "+Integer.toString(tmp.x)+" y "+Integer.toString(tmp.y)+" mode "+tmp.mode+" pressed "+tmp.pressed+" time "+tmp.time_launched);
+
                     }
                     System.err.println("END");
 
@@ -694,4 +610,106 @@ public class Carpet_Song extends AppCompatActivity {
     }
 
 
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                if(launched)
+                    Connection.cancel(true);
+                this.finish();
+                return true;
+            case R.id.Connect_Button:
+                if(!launched) {
+                    Connection = new Carpet_Receiver();
+                    Connection.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+                }
+                else
+                    Toast.makeText(getApplicationContext(),"Connection Déja lancé",Toast.LENGTH_SHORT);
+                System.err.println("Connect");
+                return true;
+            case R.id.Replay_Mode:
+                String line = "",path_id = "";
+                String[] reading_buffered_split;
+                int read_x = 0,read_y = 0;
+                String path = Environment.getExternalStorageDirectory()+"/Sensifun/";
+                File folder = new File(path);
+                if(!folder.exists()){
+                    folder.mkdir();
+                }
+                try {
+
+                    //create the buffered reader of the file
+                    BufferedReader file_buffer_reader= new BufferedReader(new FileReader(path+"aaaa.txt"));
+                    line = file_buffer_reader.readLine();
+                    //load the size
+                    read_x = Integer.parseInt(line.split(" ")[0]);
+                    read_y = Integer.parseInt(line.split(" ")[1]);
+                    create_sound_by_size(read_x,read_y);
+                    int size_of_init = read_x * read_y;
+                    //load the settings of the carpet
+                    for (int current_line=0;current_line<size_of_init;current_line++){
+                        line = file_buffer_reader.readLine();
+                        reading_buffered_split = line.split(" ");
+                        read_x = Integer.parseInt(reading_buffered_split[0]);
+                        read_y = Integer.parseInt(reading_buffered_split[1]);
+                        if(line.contains("id")){
+                            path_id = line.split("id:")[1];
+                            System.err.println("id "+path_id);
+//                            sound_tab[read_x][read_y] = new Sound_Information(getApplicationContext(),Integer.parseInt(path_id));
+                            sound_tab[read_x][read_y] = new Sound_Information(getApplicationContext(),getResources().getIdentifier("effect"+Integer.toString(read_x*3 + (read_y+1)),"raw",getPackageName()));
+
+                        }else{
+                            path_id = line.split("path:")[1];
+                            sound_tab[read_x][read_y] = new Sound_Information(getApplicationContext(),path_id);
+                        }
+                        sound_tab[read_x][read_y].On_Completion(new Complete_Sound(read_x,read_y));
+                    }
+                    //TODO : Correct the problem read files, the reading list don't d the same thing than the other list
+                    //Save2 = new ArrayList<Complete_Sound>();
+                    while ((line = file_buffer_reader.readLine())!= null){
+                        reading_buffered_split = line.split(" ");
+                        System.err.println(line);
+                        for (String Split_read : reading_buffered_split){
+                            System.err.println(Split_read);
+                        }
+                        Save2.add(new Complete_Sound(Integer.parseInt(reading_buffered_split[0]),Integer.parseInt(reading_buffered_split[1]),Boolean.parseBoolean(reading_buffered_split[3]),reading_buffered_split[2],Long.parseLong(reading_buffered_split[4])));
+                    }
+                    file_buffer_reader.close();
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(),"Erreur survenue lors de la récupération des données",Toast.LENGTH_LONG).show();
+                    System.err.println(path_id+" "+Integer.toString(read_x)+" "+Integer.toString(read_y));
+                    return true;
+                }
+                System.err.println("Je vais lancer le replay");
+                for (Complete_Sound tmp: Save){
+                    System.err.println(" x: "+tmp.x +" y: "+ tmp.y + " pressed: "+ tmp.pressed + " time: " + tmp.time_launched +" mode: "+ tmp.mode);
+                }
+                //Save = new ArrayList<Complete_Sound>(Save2);
+                System.err.println("Save 2");
+                for (Complete_Sound tmp2: Save2){
+                    System.err.println("x: "+tmp2.x +" y: "+ tmp2.y + " pressed: "+ tmp2.pressed + " time: " + tmp2.time_launched +" mode: "+ tmp2.mode);
+
+                }
+                for (int ind=0;ind<Save.size();ind++)
+                    if(Save.get(ind) == Save2.get(ind))
+                        finish();
+                    else
+                        System.err.println(Save.get(ind));
+                //Save: list from previous launched
+                //Save2 : list from file reading
+                replay =  new relaunched_replay(Save2);
+                replay.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 }
+
+

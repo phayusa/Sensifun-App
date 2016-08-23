@@ -3,6 +3,7 @@ package com.example.sokomo.sensifun;
 import android.Manifest;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 //import android.support.v7.widget.SearchView;
 import android.widget.SearchView;
@@ -25,6 +27,8 @@ import android.widget.ListView;
  */
 
 import android.app.ListActivity;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -143,7 +147,53 @@ public class Song_Selection extends AppCompatActivity implements SearchView.OnQu
     }
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 340:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission Granted
+                    get_sound_information();
+                } else {
+                    // Permission Denied
+                    Toast.makeText(getApplicationContext(), "You need to allow access to External Storage to access to your songs", Toast.LENGTH_SHORT)
+                            .show();
+                    finish();
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 
+    private void insertDummyContactWrapper() {
+        int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
+            if (!shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                showMessageOKCancel("You need to allow access to External Storage to access to your songs",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+                                        340);
+                            }
+                        });
+                return;
+            }
+            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+                    340);
+            return;
+        }
+    }
+
+    private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
+        new AlertDialog.Builder(this)
+                .setMessage(message)
+                .setPositiveButton("OK", okListener)
+                .setNegativeButton("Cancel", null)
+                .create()
+                .show();
+    }
 
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -152,14 +202,22 @@ public class Song_Selection extends AppCompatActivity implements SearchView.OnQu
         x = t.getIntExtra("X1",-1);
         y = t.getIntExtra("Y1",-1);
         Path_Song = new HashMap<>();
-        get_sound_information();
+        //get_sound_information();
         listView = (ListView) findViewById(R.id.List_Song);
+        int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] {Manifest.permission.READ_EXTERNAL_STORAGE},
+                    340);
+            return;
+        }
+        get_sound_information();
         adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,get_sound_information());
+                R.layout.listview_content,android.R.id.text1,get_sound_information());
         if(listView == null){
             this.finish();
         }
         listView.setAdapter(adapter);
+        listView.setBackgroundColor(getColor(R.color.Bottom_App));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

@@ -104,6 +104,7 @@ public class Sound_Information {
     public void Sound_Play(){
         try {
             sound.start();
+
         }
         catch (Exception e){
             e.printStackTrace();

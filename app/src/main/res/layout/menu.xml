@@ -42,20 +42,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Song Compositor"
-            android:background="@drawable/button_menu_green"
-            android:textColor="#ffffff"
-            android:onClick="Test_Button"
-            android:id="@+id/Song_launch"
-            android:layout_margin="10dp"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="Color Memory"
             android:textColor="#ffffff"
-            android:background="@drawable/button_menu_purple"
+            android:background="@drawable/button_menu_green"
             android:id="@+id/Simon_Button"
             android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
@@ -66,11 +55,12 @@
             android:layout_height="wrap_content"
             android:text="Settings"
             android:textColor="#ffffff"
-            android:background="@drawable/button_menu_yellow"
+            android:background="@drawable/button_menu_purple"
             android:id="@+id/Settings_button"
             android:layout_margin="10dp"
             android:layout_gravity="center_horizontal"
             android:onClick="Test_Button"/>
+
 
         <Button
             android:layout_width="match_parent"
@@ -78,7 +68,7 @@
             android:text="Exit"
             android:layout_margin="10dp"
             android:textColor="#ffffff"
-            android:background="@drawable/button_menu_grey"
+            android:background="@drawable/button_menu_yellow"
             android:id="@+id/Exit_button"
             android:layout_gravity="center_horizontal"
             android:onClick="Test_Button"/>

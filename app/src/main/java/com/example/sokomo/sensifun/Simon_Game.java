@@ -1,7 +1,5 @@
 package com.example.sokomo.sensifun;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageButton;
@@ -25,7 +23,7 @@ public class Simon_Game extends Carpet_Manager{
     private int current_indice;
     private boolean played_sequence;
     private TextView writer;
-    private Button_Simon_Information[][] buttons;
+    private Simon_Button_Information[][] buttons;
     private boolean random;
     private int lastx;
     private int lasty;
@@ -38,12 +36,12 @@ public class Simon_Game extends Carpet_Manager{
     private int id_look_drawable;
     private int id_go_drawable;
 
-    Simon_Game(int carpet_size_x,int carpet_size_y,Button_Simon_Information[][] buttons_Simon,TextView text_util,ImageButton middle,int id_look,int id_go){
+    Simon_Game(int carpet_size_x, int carpet_size_y, Simon_Button_Information[][] buttons_Simon, TextView text_util, ImageButton middle, int id_look, int id_go){
         super(carpet_size_x,carpet_size_y);
         random = true;
         sequence_random_play = new ArrayList<Coord_Container>();
         level = 1;
-        buttons = new Button_Simon_Information[nb_x][nb_y];
+        buttons = new Simon_Button_Information[nb_x][nb_y];
         buttons = buttons_Simon;
         in_play = false;
         writer = text_util;

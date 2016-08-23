@@ -13,13 +13,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.InetAddress;
-import java.net.Socket;
-
 /**
  * Created by sokomo on 11/08/16.
  */
@@ -85,7 +78,7 @@ public class Simon_Activity extends AppCompatActivity {
         ViewStub stub = (ViewStub) findViewById(R.id.stub_simon);
         stub.setLayoutResource(R.layout.simon_grid);
         View inflated = stub.inflate();
-        Button_Simon_Information[][] buttons = new Button_Simon_Information[2][2];
+        Simon_Button_Information[][] buttons = new Simon_Button_Information[2][2];
         launched_client = false;
         int counter = 1;
 
@@ -101,7 +94,7 @@ public class Simon_Activity extends AppCompatActivity {
                         on_click_button(view);
                     }
                 });
-                buttons[x][y] = new Button_Simon_Information(button,getApplicationContext(),getResources().getIdentifier("simon_sound"+x+y,"raw",getPackageName()),getResources().getIdentifier("inside_circle"+counter,"drawable",getPackageName()),R.color.Bottom_App,R.drawable.go_button, ((ImageButton) findViewById(R.id.Lauch_sequence)));
+                buttons[x][y] = new Simon_Button_Information(button,getApplicationContext(),getResources().getIdentifier("simon_sound"+x+y,"raw",getPackageName()),getResources().getIdentifier("inside_circle"+counter,"drawable",getPackageName()),R.color.Bottom_App,R.drawable.go_button, ((ImageButton) findViewById(R.id.Lauch_sequence)));
                 counter++;
             }
         }

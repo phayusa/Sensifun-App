@@ -88,7 +88,7 @@ public class Settings extends AppCompatActivity {
                 ((RadioButton) button_pressed).setChecked(true);
                 break;
             case R.id.validate_button_settings:
-                if(Integer.parseInt(((TextView) findViewById(R.id.Entry_Time)).getText().toString()) <= 20) {
+                if(Integer.parseInt(((TextView) findViewById(R.id.Entry_Time)).getText().toString()) < 20) {
                     Toast.makeText(getApplicationContext(),"Countdown must be superior to 20",Toast.LENGTH_SHORT).show();
                     return;
                 }
